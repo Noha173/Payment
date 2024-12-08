@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الدفع</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            margin-top: 20px;
+            color: #333;
+        }
+        .payment-method {
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .crypto-address {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .crypto-address p {
+            margin: 0;
+            font-size: 14px;
+            color: #333;
+        }
+        .copy-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .copy-btn:hover {
+            background-color: #2980b9;
+        }
+        .paypal-container {
+            max-width: 280px; /* تصغير حجم PayPal */
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>خيارات الدفع</h1>
+
+        <!-- PayPal Section -->
+        <div class="payment-method">
+            <h2>الدفع عبر PayPal</h2>
+            <div class="paypal-container" id="paypal-container"></div>
+            <script src="https://www.paypal.com/sdk/js?client-id=BAAaNVLvgfJQcHe8QhYT-UHFElc9rbbc0DDhdJqEw3ohOrmCZr28F3tnKg6UJnIgp9M492QeFOU49LVanY&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+            <script>
+                paypal.HostedButtons({
+                    hostedButtonId: "B7D7X64XXRLJJ",
+                }).render("#paypal-container");
+            </script>
+        </div>
+
+        <!-- Crypto Section -->
+        <div class="payment-method">
+            <h2>الدفع عبر العملات الرقمية</h2>
+            <div class="crypto-address">
+                <p><strong>USDT (TRC20):</strong> TQkHHVUfQC6oZ6rZYxNuUL32EvCAyM8Rd2</p>
+                <button class="copy-btn" onclick="copyToClipboard('TQkHHVUfQC6oZ6rZYxNuUL32EvCAyM8Rd2')">نسخ</button>
+            </div>
+            
+            <div class="crypto-address">
+                <p><strong>Bitcoin (BTC):</strong> 16EoWHU1uZmfXDHeQD5YMG94d4iUfCiQ1u</p>
+                <button class="copy-btn" onclick="copyToClipboard('16EoWHU1uZmfXDHeQD5YMG94d4iUfCiQ1u')">نسخ</button>
+            </div>
+            
+            <div class="crypto-address">
+                <p><strong>Ethereum (ETH):</strong> 0x15860049b17883acf6da17420f40d4e49b029fb3</p>
+                <button class="copy-btn" onclick="copyToClipboard('0x15860049b17883acf6da17420f40d4e49b029fb3')">نسخ</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert("تم نسخ العنوان بنجاح!");
+            }).catch(err => {
+                console.error("فشل النسخ: ", err);
+            });
+        }
+    </script>
+</body>
+</html>
